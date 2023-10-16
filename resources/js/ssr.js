@@ -1,5 +1,7 @@
-import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
+import createServer from '@inertiajs/vue3/server'
+import { renderToString } from '@vue/server-renderer'
+import { createSSRApp, h } from 'vue'
 
 import { Quasar } from 'quasar'
 import quasarLang from 'quasar/lang/fr'
@@ -16,20 +18,24 @@ import '@quasar/extras/material-icons-outlined/material-icons-outlined.css'
 // Import Quasar css
 import 'quasar/src/css/index.sass'
 
-createInertiaApp({
-    resolve: name => {
-        const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
-        return pages[`./Pages/${name}.vue`]
-    },
-    setup({ el, App, props, plugin }) {
-        createApp({ render: () => h(App, props) })
-            .use(plugin)
+createServer(page =>
+    createInertiaApp({
+        page,
+        render: renderToString,
+        resolve: name => {
+            const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
+            return pages[`./Pages/${name}.vue`]
+        },
+        setup({ App, props, plugin }) {
+            return createSSRApp({
+                render: () => h(App, props),
+            }).use(plugin)
             .use(Quasar, {
                 plugins: {}, // import Quasar plugins and add here
                 lang: quasarLang,
                 iconSet: quasarIconSet,
                 dark: true/* look at QuasarConfOptions from the API card */
             })
-            .mount(el)
-    },
-})
+        },
+    }),
+)
