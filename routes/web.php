@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QRController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -13,9 +14,7 @@ use App\Http\Controllers\HomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-/*
-Route::get('/', function () {
-    return view('welcome');
-});*/
+
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/QR', [QRController::class, 'redirect']);
 
