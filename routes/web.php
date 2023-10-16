@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\QRController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/QR', [QRController::class, 'redirect']);
 
-Route::get('/', 'HomeController@index');

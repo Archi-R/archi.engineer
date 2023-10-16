@@ -3,12 +3,22 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
-        "postinstall": "npm run prod"
+        "build": "vite build && vite build --ssr"
     },
     "devDependencies": {
+        "@quasar/vite-plugin": "^1.5.0",
         "axios": "^1.1.2",
         "laravel-vite-plugin": "^0.8.0",
+        "sass": "^1.32.12",
         "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "@inertiajs/vue3": "^1.0.12",
+        "@quasar/extras": "^1.16.7",
+        "@vitejs/plugin-vue": "^4.4.0",
+        "@vue/server-renderer": "^3.3.4",
+        "quasar": "^2.12.7",
+        "vue": "^3.2.36",
+        "vue-loader": "^17.3.0"
     }
 }
