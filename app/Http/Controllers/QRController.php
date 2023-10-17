@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
+
 class QRController extends Controller
 {
     public function redirect()
     {
-        return redirect()->away('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+        return Inertia::render('QR', [
+            'redirectUrl' => 'https://www.youtube.com/watch?v=OgZzUJud3Q4',
+        ]);
     }
 }
