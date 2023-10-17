@@ -7,14 +7,13 @@
 </template>
 
 <script setup>
-export default {
-    props: {
-        redirectUrl: String
-    },
-    mounted() {
-        if (this.redirectUrl) {
-            window.location.href = this.redirectUrl;
-        }
+import { onMounted } from 'vue';
+
+const { redirectUrl } = defineProps(['redirectUrl']);
+
+onMounted(() => {
+    if (redirectUrl) {
+        window.location.href = redirectUrl;
     }
-}
+});
 </script>
