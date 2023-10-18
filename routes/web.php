@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MemeAdminController;
 use App\Http\Controllers\QRController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -17,4 +18,6 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/QR', [QRController::class, 'redirect']);
-
+Route::get('/MemeAdmin', [MemeAdminController::class, 'login']);
+Route::post('/MemeAdmin', [MemeAdminController::class, 'dashboard']);
+Route::get('/MemeChanger', [MemeAdminController::class, 'dashboard']);
