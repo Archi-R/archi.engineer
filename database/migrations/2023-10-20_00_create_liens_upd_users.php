@@ -11,6 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('privilege')->default('gueux');
+        });
+
         Schema::create('LiensMemes', function (Blueprint $table) {
             $table->id();
             $table->string('lien');
@@ -27,6 +31,16 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('');
+        Schema::table('LiensMemes', function (Blueprint $table) {
+            $table->dropForeign('LiensMemes_created_by_foreign');
+        });
+
+        Schema::dropIfExists('LiensMemes');
+
+        if(Schema::hasColumn('users', 'privilege')){
+            Schema::table('users', function (Blueprint $table) {
+                $table->dropColumn('privilege');
+            });
+        }
     }
 };
