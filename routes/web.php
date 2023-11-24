@@ -21,3 +21,4 @@ Route::get('/QR', [QRController::class, 'redirect']);
 Route::get('/MemeAdmin', [MemeAdminController::class, 'login']);
 Route::post('/MemeAdmin', [MemeAdminController::class, 'dashboard']);
 Route::get('/MemeChanger', [MemeAdminController::class, 'dashboard']);
+

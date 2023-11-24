@@ -8,8 +8,11 @@ class QRController extends Controller
 {
     public function redirect()
     {
-        return Inertia::render('QR', [
+        /*
+         return Inertia::render('QR', [
             'redirectUrl' => 'https://www.youtube.com/watch?v=OgZzUJud3Q4',
         ]);
+        */
+        return Inertia::render('Polybottle');
     }
 }
