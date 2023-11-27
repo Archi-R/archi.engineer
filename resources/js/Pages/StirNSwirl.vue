@@ -6,7 +6,7 @@
                     <img src="../../images/SNS_top.png" height="1152" width="" alt="Header Image"/>
                 </div>
 
-                <div v-show="hideImage" class="text-container transition-text">
+                <div class="text-container transition-text" >
                     <h1>
                         - StirN'Swirl -
                     </h1>
@@ -21,27 +21,31 @@
     </q-layout>
 </template>
 
-<script>
-export default {
-    data () {
-        return {
-            hideImage: false
-        }
-    },
-    methods: {
-        handleScroll () {
-            const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-            this.hideImage = scrollPosition > 100; // Adjust the 100 value to control when the image should start to hide
-        }
-    },
-    mounted () {
-        window.addEventListener('scroll', this.handleScroll);
-    },
-    beforeDestroy () {
-        window.removeEventListener('scroll', this.handleScroll);
-    }
-}
+<script setup>
+import {ref, onMounted, onBeforeUnmount, watch} from 'vue';
+import {useQuasar} from "quasar";
+const $q = useQuasar()
+// calling here; equivalent to when component is created
+$q.dark.set(true)
+
+
+const hideImage = ref(false);
+
+const handleScroll = () => {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    hideImage.value = scrollPosition > 100;
+    console.log("Scroll Position:", scrollPosition, "Hide Image:", hideImage.value);
+};
+
+onMounted(() => {
+    window.addEventListener('scroll', handleScroll);
+});
+
+onBeforeUnmount(() => {
+    window.removeEventListener('scroll', handleScroll);
+});
 </script>
+
 
 <style>
 .header-image {
@@ -60,12 +64,11 @@ export default {
     transition: opacity 0.5s;
     will-change: opacity;
 }
-.text-container {
-    text-align: center;
-    padding-top: 20px; /* Adjust based on your design */
+.text-container h1 {
+    font-size: 390%;
 }
-.transition-text {
-    transition: opacity 0.5s;
-    will-change: opacity;
+
+.text-container h2 {
+    font-size: 250%;
 }
 </style>
