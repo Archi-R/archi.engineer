@@ -22,3 +22,6 @@ Route::get('/MemeAdmin', [MemeAdminController::class, 'login']);
 Route::post('/MemeAdmin', [MemeAdminController::class, 'dashboard']);
 Route::get('/MemeChanger', [MemeAdminController::class, 'dashboard']);
 Route::get('/SNS', [QRController::class, 'SNS']);
+
+// Route pour la redirection
+Route::get('/Polybottle', [QRController::class, 'redirect']);

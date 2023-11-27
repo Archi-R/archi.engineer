@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class QRController extends Controller
 {
@@ -19,4 +21,6 @@ class QRController extends Controller
     {
         return Inertia::render('StirNSwirl');
     }
+
+
 }
