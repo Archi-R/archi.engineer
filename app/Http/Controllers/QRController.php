@@ -15,4 +15,8 @@ class QRController extends Controller
         */
         return Inertia::render('Polybottle');
     }
+    public function SNS()
+    {
+        return Inertia::render('StirNSwirl');
+    }
 }
