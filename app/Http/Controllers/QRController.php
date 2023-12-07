@@ -10,17 +10,11 @@ class QRController extends Controller
 {
     public function redirect()
     {
-        /*
-         return Inertia::render('QR', [
-            'redirectUrl' => 'https://www.youtube.com/watch?v=OgZzUJud3Q4',
-        ]);
-        */
-        return Inertia::render('Polybottle');
+        return view('qr', ['lien' => $this->linker()]);
     }
-    public function SNS()
+
+    private function linker()
     {
-        return Inertia::render('StirNSwirl');
+        return 'http://blod34.archi.engineer/';
     }
-
-
 }
